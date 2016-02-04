@@ -12,7 +12,7 @@ namespace ConsoleFramework.Controls
     /// <summary>
     /// Список элементов с возможностью выбрать один из них.
     /// </summary>
-    public class ListBox : Control
+    internal class ListBox : Control
     {
         /// <summary>
         /// Количество элементов, которое пропускается при обработке нажатий PgUp и PgDown.

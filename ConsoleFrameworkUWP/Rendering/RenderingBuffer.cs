@@ -108,14 +108,14 @@ namespace ConsoleFramework.Rendering
         /// <param name="affectedRect">Прямоугольник в дочернем контроле, который был изменен.</param>
         public void ApplyChild(RenderingBuffer childBuffer, Vector actualOffset,
                                Size childRenderSize, Rect renderSlotRect,
-                               Rect layoutClip, Rect? affectedRect)
+                               Rect layoutClip, Rect affectedRect)
         {
 
             // Считаем finalRect - прямоугольник относительно parent, который нужно закрасить
             Rect finalRect = layoutClip;
 
             if (affectedRect != null)
-                finalRect.Intersect(affectedRect.Value);
+                finalRect.Intersect(affectedRect);
 
             // Если child.RenderSlotRect больше child.RenderSize, а rendering buffer
             // дочернего контрола больше его RenderSize (такое бывает после уменьшения
@@ -260,7 +260,7 @@ namespace ConsoleFramework.Rendering
         /// <param name="canvas"></param>
         /// <param name="affectedRect">Измененная область относительно this.</param>
         /// <param name="offset">В какой точке экрана размещен контрол (см <see cref="Renderer.RootElementRect"/>).</param>
-        public void CopyToPhysicalCanvas(PhysicalCanvas canvas, Rect affectedRect, Point offset)
+        internal void CopyToPhysicalCanvas(PhysicalCanvas canvas, Rect affectedRect, Point offset)
         {
             Rect rectToCopy = affectedRect;
             Rect bufferRect = new Rect(new Point(0, 0), new Size(this.width, this.height));

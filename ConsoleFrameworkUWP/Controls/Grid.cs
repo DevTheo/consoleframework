@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ConsoleFramework.Core;
 using ConsoleFramework.Rendering;
-using Xaml;
+using Windows.UI.Xaml.Markup;
 
 namespace ConsoleFramework.Controls
 {
@@ -29,8 +29,8 @@ namespace ConsoleFramework.Controls
     /// <summary>
     /// Represents the length of elements that explicitly support Star unit types.
     /// </summary>
-    [TypeConverter(typeof(GridLengthTypeConverter))]
-    public struct GridLength
+    //[TypeConverter(typeof(GridLengthTypeConverter))]
+    internal class GridLength
     {
         private readonly GridUnitType gridUnitType;
         private readonly int value;
@@ -49,7 +49,7 @@ namespace ConsoleFramework.Controls
         }
     }
 
-    public class ColumnDefinition
+    internal class ColumnDefinition
     {
         public ColumnDefinition( ) {
             Width = new GridLength(GridUnitType.Auto, 0);
@@ -62,7 +62,7 @@ namespace ConsoleFramework.Controls
         public int? MaxWidth { get; set; }
     }
 
-    public class RowDefinition
+    internal class RowDefinition
     {
         public RowDefinition( ) {
             Height = new GridLength(GridUnitType.Auto, 0);
@@ -75,24 +75,19 @@ namespace ConsoleFramework.Controls
         public int? MaxHeight { get; set; }
     }
 
-    public class GridLengthTypeConverter : ITypeConverter
+    internal class GridLengthTypeConverter //: ITypeConverter
     {
         public bool CanConvertFrom( Type sourceType ) {
-            switch (Type.GetTypeCode(sourceType))
-            {
-                case TypeCode.Int16:
-                case TypeCode.UInt16:
-                case TypeCode.Int32:
-                case TypeCode.UInt32:
-                case TypeCode.Int64:
-                case TypeCode.UInt64:
-                case TypeCode.Single:
-                case TypeCode.Double:
-                case TypeCode.Decimal:
-                case TypeCode.String:
-                    return true;
-            }
-            return false;
+            return (sourceType == typeof(Int16) ||
+                sourceType == typeof(UInt16) ||
+                sourceType == typeof(Int32) ||
+                sourceType == typeof(UInt32) ||
+                sourceType == typeof(Int64) ||
+                sourceType == typeof(UInt64) ||
+                sourceType == typeof(Single) ||
+                sourceType == typeof(Double) ||
+                sourceType == typeof(Decimal) ||
+                sourceType == typeof(String));
         }
 
         public bool CanConvertTo( Type destinationType ) {
@@ -139,8 +134,8 @@ namespace ConsoleFramework.Controls
         }
     }
 
-    [ContentProperty("Controls")]
-    public class Grid : Control
+    [ContentProperty(Name = "Controls")]
+    internal class Grid : Control
     {
         private readonly List< ColumnDefinition > columnDefinitions = new List< ColumnDefinition >();
         private readonly List< RowDefinition > rowDefinitions = new List< RowDefinition >();

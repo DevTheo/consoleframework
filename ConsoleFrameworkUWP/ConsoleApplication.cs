@@ -62,17 +62,17 @@ namespace ConsoleFramework.UWP
 
             if (maximized) return;
 
-            savedBufferSize = new Size(Console.BufferWidth, Console.BufferHeight);
+            //savedBufferSize = new Size(Console.BufferWidth, Console.BufferHeight);
             Win32.SendMessage(getConsoleWindowHwnd(), Win32.WM_SYSCOMMAND,
                 Win32.SC_MAXIMIZE, IntPtr.Zero);
-            int maxWidth = Console.LargestWindowWidth;
-            int maxHeight = Console.LargestWindowHeight;
-            Console.SetWindowPosition(0, 0);
-            Console.SetBufferSize(maxWidth, maxHeight);
-            Console.SetWindowSize(maxWidth, maxHeight);
+            //int maxWidth = Console.LargestWindowWidth;
+            //int maxHeight = Console.LargestWindowHeight;
+            //Console.SetWindowPosition(0, 0);
+            //Console.SetBufferSize(maxWidth, maxHeight);
+            //Console.SetWindowSize(maxWidth, maxHeight);
 
             // Apply new sizes to Canvas
-            CanvasSize = new Size(maxWidth, maxHeight);
+            //CanvasSize = new Size(maxWidth, maxHeight);
             renderer.RootElementRect = new Rect(canvas.Size);
             renderer.UpdateLayout();
 
@@ -95,24 +95,24 @@ namespace ConsoleFramework.UWP
 
             Win32.SendMessage(getConsoleWindowHwnd(), Win32.WM_SYSCOMMAND,
                 Win32.SC_RESTORE, IntPtr.Zero);
-            Console.SetWindowPosition(0, 0);
+            //Console.SetWindowPosition(0, 0);
 
             // Get largest size again - because resolution of screen can change
             // between maximize and restore calls
-            int maxWidth = Console.LargestWindowWidth;
-            int maxHeight = Console.LargestWindowHeight;
+            //int maxWidth = Console.LargestWindowWidth;
+            //int maxHeight = Console.LargestWindowHeight;
 
-            Console.SetWindowSize(
-                Math.Min(savedWindowRect.Width, maxWidth),
-                Math.Min(savedWindowRect.Height, maxHeight));
-            Console.SetWindowPosition(savedWindowRect.Left, savedWindowRect.Top);
+            //Console.SetWindowSize(
+            //    Math.Min(savedWindowRect.Width, maxWidth),
+            //    Math.Min(savedWindowRect.Height, maxHeight));
+            //Console.SetWindowPosition(savedWindowRect.Left, savedWindowRect.Top);
 
             // Duo issue with console in Windows 10 Technical Preview (unexpected decreasing Console.BufferSize)
             // we should take Max of window width. See https://github.com/elw00d/consoleframework/issues/21
-            Console.SetBufferSize(
-                Math.Max(savedBufferSize.Width, Console.WindowWidth),
-                Math.Max(savedBufferSize.Height, Console.WindowHeight)
-            );
+            //Console.SetBufferSize(
+            //    Math.Max(savedBufferSize.Width, Console.WindowWidth),
+            //    Math.Max(savedBufferSize.Height, Console.WindowHeight)
+            //);
 
             // Apply new sizes to Canvas
             CanvasSize = new Size(savedWindowRect.Width, savedWindowRect.Height);
@@ -237,29 +237,29 @@ namespace ConsoleFramework.UWP
                 return;
             }
 
-            switch (Environment.OSVersion.Platform)
-            {
-                case PlatformID.Win32NT:
-                case PlatformID.Win32S:
-                case PlatformID.Win32Windows:
-                case PlatformID.WinCE:
+            //switch (Environment.OSVersion.Platform)
+            //{
+            //    case PlatformID.Win32NT:
+            //    case PlatformID.Win32S:
+            //    case PlatformID.Win32Windows:
+            //    case PlatformID.WinCE:
                     usingLinux = false;
-                    break;
-                case PlatformID.Unix:
-                    usingLinux = true;
-#if !WIN32
-                    Utsname uname;
-                    Syscall.uname(out uname);
-                    if (uname.sysname == "Darwin")
-                    {
-                        isDarwin = true;
-                    }
-#endif
-                    break;
-                case PlatformID.MacOSX:
-                case PlatformID.Xbox:
-                    throw new NotSupportedException();
-            }
+//                    break;
+//                case PlatformID.Unix:
+//                    usingLinux = true;
+//#if !WIN32
+//                    Utsname uname;
+//                    Syscall.uname(out uname);
+//                    if (uname.sysname == "Darwin")
+//                    {
+//                        isDarwin = true;
+//                    }
+//#endif
+//                    break;
+//                case PlatformID.MacOSX:
+//                case PlatformID.Xbox:
+//                    throw new NotSupportedException();
+//            }
         }
 
         private ConsoleApplication()
@@ -347,7 +347,7 @@ namespace ConsoleFramework.UWP
         /// <summary>
         /// Returns the root control of the application.
         /// </summary>
-        public Control RootControl
+        internal Control RootControl
         {
             get { return mainControl; }
             // todo : remove after integrating JSIL code into ConsoleApplication class
@@ -443,7 +443,7 @@ namespace ConsoleFramework.UWP
         /// Application will run until method <see cref="Exit"/> is called.
         /// </summary>
         /// <param name="control"></param>
-        public void Run(Control control)
+        internal void Run(Control control)
         {
             try
             {
@@ -462,7 +462,7 @@ namespace ConsoleFramework.UWP
             }
         }
 
-        public void Run(Control control, Size canvasSize, Rect rectToUse)
+        internal void Run(Control control, Size canvasSize, Rect rectToUse)
         {
             userCanvasSize = canvasSize;
             userRootElementRect = rectToUse;
@@ -839,9 +839,9 @@ namespace ConsoleFramework.UWP
             stdInputHandle = Win32.GetStdHandle(StdHandleType.STD_INPUT_HANDLE);
             stdOutputHandle = Win32.GetStdHandle(StdHandleType.STD_OUTPUT_HANDLE);
             IntPtr[] handles = new[] {
-                exitWaitHandle.SafeWaitHandle.DangerousGetHandle(),
+                exitWaitHandle.GetSafeWaitHandle().DangerousGetHandle(),
                 stdInputHandle,
-                invokeWaitHandle.SafeWaitHandle.DangerousGetHandle(  )
+                invokeWaitHandle.GetSafeWaitHandle().DangerousGetHandle(  )
             };
 
             // Set console mode to enable mouse and window resizing events
@@ -856,8 +856,8 @@ namespace ConsoleFramework.UWP
             Win32.GetConsoleScreenBufferInfo(stdOutputHandle, out screenBufferInfo);
 
             // Set Canvas size to current console window size (not to whole buffer size)
-            savedWindowRect = new Rect(new Point(Console.WindowLeft, Console.WindowTop),
-                                        new Size(Console.WindowWidth, Console.WindowHeight));
+            //savedWindowRect = new Rect(new Point(Console.WindowLeft, Console.WindowTop),
+            //                            new Size(Console.WindowWidth, Console.WindowHeight));
             CanvasSize = new Size(savedWindowRect.Width, savedWindowRect.Height);
 
             canvas = userCanvasSize.IsEmpty
@@ -879,8 +879,8 @@ namespace ConsoleFramework.UWP
 
 
             this.running = true;
-            this.mainThreadId = Thread.CurrentThread.ManagedThreadId;
-            //
+            //this.mainThreadId = Thread.CurrentThread.ManagedThreadId;
+            
             while (true)
             {
                 // 100 ms instead of Win32.INFINITE to check console window Zoomed and Iconic
@@ -916,8 +916,8 @@ namespace ConsoleFramework.UWP
                     }
                     if (!maximized)
                     {
-                        savedWindowRect = new Rect(new Point(Console.WindowLeft, Console.WindowTop),
-                                                    new Size(Console.WindowWidth, Console.WindowHeight));
+                        //savedWindowRect = new Rect(new Point(Console.WindowLeft, Console.WindowTop),
+                        //                            new Size(Console.WindowWidth, Console.WindowHeight));
                     }
                 }
                 // WAIT_FAILED
@@ -1048,7 +1048,8 @@ namespace ConsoleFramework.UWP
         /// <returns></returns>
         public bool IsUiThread()
         {
-            return Thread.CurrentThread.ManagedThreadId == this.mainThreadId;
+            return Windows.UI.Core.CoreWindow.GetForCurrentThread().Dispatcher.HasThreadAccess;
+            //return Thread.CurrentThread.ManagedThreadId == this.mainThreadId;
         }
 
         /// <summary>
@@ -1067,24 +1068,28 @@ namespace ConsoleFramework.UWP
             if (IsUiThread())
             {
                 action.Invoke();
-                return;
             }
-            using (EventWaitHandle waitHandle = new EventWaitHandle(false, EventResetMode.ManualReset))
+            else
             {
-                lock (actionsLocker)
-                {
-                    actionsToBeInvoked.Add(new ActionInfo(action, waitHandle));
-                }
-                if (usingLinux)
-                //{
-                //    Libc.writeInt64(pipeFds[1], 3);
-                //}
-                //else {
-                    invokeWaitHandle.Set();
-                //}
-
-                waitHandle.WaitOne();
+                Windows.UI.Core.CoreWindow.GetForCurrentThread().Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, new Windows.UI.Core.DispatchedHandler(action))
+                    .AsTask().Wait();
             }
+            //using (EventWaitHandle waitHandle = new EventWaitHandle(false, EventResetMode.ManualReset))
+            //{
+            //    lock (actionsLocker)
+            //    {
+            //        actionsToBeInvoked.Add(new ActionInfo(action, waitHandle));
+            //    }
+            //    if (usingLinux)
+            //    //{
+            //    //    Libc.writeInt64(pipeFds[1], 3);
+            //    //}
+            //    //else {
+            //        invokeWaitHandle.Set();
+            //    //}
+
+            //    waitHandle.WaitOne();
+            //}
         }
 
         /// <summary>
@@ -1156,7 +1161,7 @@ namespace ConsoleFramework.UWP
         /// Starts capturing the mouse and routed events specified control. After this control accepts all mouse events as the event source (regardless of the position of the mouse cursor), and all routed events are sent only in the control and to his descendants.
         /// Used, for example, clicking the button after pressing enter is captured, and events come only button.When the user releases the mouse button, the capture is stopped.
         /// </summary>
-        public void BeginCaptureInput(Control control)
+        internal void BeginCaptureInput(Control control)
         {
             eventManager.BeginCaptureInput(control);
         }
@@ -1167,7 +1172,7 @@ namespace ConsoleFramework.UWP
         /// BING Translation:
         /// Ends the mouse capture and routed events.
         /// </summary>
-        public void EndCaptureInput(Control control)
+        internal void EndCaptureInput(Control control)
         {
             eventManager.EndCaptureInput(control);
         }

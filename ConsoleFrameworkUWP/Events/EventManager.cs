@@ -5,6 +5,7 @@ using System.Threading;
 using ConsoleFramework.Controls;
 using ConsoleFramework.Core;
 using ConsoleFramework.Native;
+using ConsoleFramework.UWP;
 
 namespace ConsoleFramework.Events
 {
@@ -156,7 +157,7 @@ namespace ConsoleFramework.Events
             return routedEventInfo.targetsList;
         }
 
-        public void BeginCaptureInput(Control control)
+        internal void BeginCaptureInput(Control control)
         {
             if (null == control)
             {
@@ -166,7 +167,7 @@ namespace ConsoleFramework.Events
             inputCaptureStack.Push(control);
         }
 
-        public void EndCaptureInput(Control control)
+        internal void EndCaptureInput(Control control)
         {
             if (null == control)
             {
@@ -253,7 +254,7 @@ namespace ConsoleFramework.Events
             lastMousePressEventArgs = null;
         }
 
-        public void ParseInputEvent(INPUT_RECORD inputRecord, Control rootElement)
+        internal void ParseInputEvent(INPUT_RECORD inputRecord, Control rootElement)
         {
             if (inputRecord.EventType == EventType.MOUSE_EVENT)
             {

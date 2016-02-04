@@ -5,7 +5,7 @@ using ConsoleFramework.Rendering;
 
 namespace ConsoleFramework.Controls
 {
-    public class RadioGroup : Panel
+    internal class RadioGroup : Panel
     {
         private int? selectedItemIndex;
         public int? SelectedItemIndex
@@ -56,7 +56,7 @@ namespace ConsoleFramework.Controls
         }
     }
 
-    public class RadioButton : CheckBox
+    internal class RadioButton : CheckBox
     {
         public override void Render(RenderingBuffer buffer)
         {

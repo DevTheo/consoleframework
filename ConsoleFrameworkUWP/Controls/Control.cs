@@ -11,14 +11,14 @@ using ConsoleFramework.UWP;
 
 namespace ConsoleFramework.Controls
 {
-    public enum Visibility
+    internal enum Visibility
     {
         Collapsed = 3,
         Hidden = 2,
         Visible = 1
     }
 
-    public enum HorizontalAlignment
+    internal enum HorizontalAlignment
     {
         Left,
         Center,
@@ -27,7 +27,7 @@ namespace ConsoleFramework.Controls
     }
 
 
-    public enum VerticalAlignment
+    internal enum VerticalAlignment
     {
         Top,
         Center,
@@ -205,39 +205,39 @@ namespace ConsoleFramework.Controls
         /// <summary>
         /// Обладает ли на данный момент текущий контрол фокусом (т.е. принимает клавиатурный ввод)
         /// </summary>
-        //public bool HasFocus
-        //{
-        //    get
-        //    {
-        //        return ConsoleApplication.Instance.FocusManager.FocusedElement == this;
-        //    }
-        //}
+        public bool HasFocus
+        {
+            get
+            {
+                return ConsoleApplication.Instance.FocusManager.FocusedElement == this;
+            }
+        }
 
-        //public void AddHandler(RoutedEvent routedEvent, Delegate @delegate)
-        //{
-        //    EventManager.AddHandler(this, routedEvent, @delegate);
-        //}
+        public void AddHandler(RoutedEvent routedEvent, Delegate @delegate)
+        {
+            EventManager.AddHandler(this, routedEvent, @delegate);
+        }
 
-        //public void AddHandler(RoutedEvent routedEvent, Delegate @delegate, bool handledEventsToo)
-        //{
-        //    EventManager.AddHandler(this, routedEvent, @delegate, handledEventsToo);
-        //}
+        public void AddHandler(RoutedEvent routedEvent, Delegate @delegate, bool handledEventsToo)
+        {
+            EventManager.AddHandler(this, routedEvent, @delegate, handledEventsToo);
+        }
 
         /// <summary>
         /// Addes specified routed event to event queue. This event will be processed in next pass.
         /// </summary>
-        //public void RaiseEvent(RoutedEvent routedEvent, RoutedEventArgs args)
-        //{
-        //    if (routedEvent == null) throw new ArgumentNullException("routedEvent");
-        //    if (args == null) throw new ArgumentNullException("args");
+        public void RaiseEvent(RoutedEvent routedEvent, RoutedEventArgs args)
+        {
+            if (routedEvent == null) throw new ArgumentNullException("routedEvent");
+            if (args == null) throw new ArgumentNullException("args");
 
-        //    ConsoleApplication.Instance.EventManager.QueueEvent(routedEvent, args);
-        //}
+            ConsoleApplication.Instance.EventManager.QueueEvent(routedEvent, args);
+        }
 
-        //public void RemoveHandler(RoutedEvent routedEvent, Delegate @delegate)
-        //{
-        //    EventManager.RemoveHandler(this, routedEvent, @delegate);
-        //}
+        public void RemoveHandler(RoutedEvent routedEvent, Delegate @delegate)
+        {
+            EventManager.RemoveHandler(this, routedEvent, @delegate);
+        }
 
         public T FindChildByName<T>(string name) where T : Control
         {
@@ -395,66 +395,66 @@ namespace ConsoleFramework.Controls
             Invalidate();
         }
 
-        //protected void RemoveChild(Control child)
-        //{
-        //    if (null == child)
-        //        throw new ArgumentNullException("child");
-        //    if (child.Parent != this)
-        //        throw new InvalidOperationException("Specified control is not a child.");
-        //    else {
-        //        ConsoleApplication.Instance.FocusManager.BeforeRemoveElementFromTree(child);
-        //        if (!this.children.Remove(child))
-        //            throw new InvalidOperationException("Assertion failed.");
-        //        child.Parent = null;
+        protected void RemoveChild(Control child)
+        {
+            if (null == child)
+                throw new ArgumentNullException("child");
+            if (child.Parent != this)
+                throw new InvalidOperationException("Specified control is not a child.");
+            else {
+                ConsoleApplication.Instance.FocusManager.BeforeRemoveElementFromTree(child);
+                if (!this.children.Remove(child))
+                    throw new InvalidOperationException("Assertion failed.");
+                child.Parent = null;
 
-        //        // Remove it from invalidation queue if already added
-        //        ConsoleApplication.Instance.Renderer.ControlRemovedFromTree(child);
+                // Remove it from invalidation queue if already added
+                ConsoleApplication.Instance.Renderer.ControlRemovedFromTree(child);
 
-        //        child.parentChanged();
+                child.parentChanged();
 
-        //        Invalidate();
-        //    }
-        //}
+                Invalidate();
+            }
+        }
 
         /// <summary>
         /// Swaps controls z-order by specified indexes.
         /// </summary>
         /// <param name="a">Index of first child</param>
         /// <param name="b">Index of second child</param>
-        //protected void SwapChildsZOrder(int a, int b)
-        //{
-        //    if (a < 0 || a >= children.Count) throw new ArgumentException("Incorrect index", "a");
-        //    if (b < 0 || b >= children.Count) throw new ArgumentException("Incorrect index", "b");
-        //    if (a == b) return;
+        protected void SwapChildsZOrder(int a, int b)
+        {
+            if (a < 0 || a >= children.Count) throw new ArgumentException("Incorrect index", "a");
+            if (b < 0 || b >= children.Count) throw new ArgumentException("Incorrect index", "b");
+            if (a == b) return;
 
-        //    Control tmp = this.children[a];
-        //    this.children[a] = this.children[b];
-        //    this.children[b] = tmp;
+            Control tmp = this.children[a];
+            this.children[a] = this.children[b];
+            this.children[b] = tmp;
 
-        //    // Add this to zorderCheckControls list
-        //    ConsoleApplication.Instance.Renderer.AddControlToZOrderCheckList(this);
-        //}
+            // Add this to zorderCheckControls list
+            ConsoleApplication.Instance.Renderer.AddControlToZOrderCheckList(this);
+        }
 
-        //private void Control_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs args)
-        //{
-        //    // Focusable controls invalidated automatically when aquire focus
-        //    if (this.Focusable)
-        //        Invalidate();
-        //}
+        private void Control_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs args)
+        {
+            // Focusable controls invalidated automatically when aquire focus
+            if (this.Focusable)
+                Invalidate();
+        }
 
         /// <summary>
         /// Если один из дочерних контролов окна теряет фокус, то будет вызван этот обработчик
         /// </summary>
-        //private void Control_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs args)
-        //{
-        //    // Если текущий контрол является FocusScope, то мы должны сохранить элемент,
-        //    // который имел фокус, чтобы восстановить его, когда FocusScope получит его обратно
-        //    this.StoredFocus = this.IsFocusScope ? args.OldFocus : null;
+        private void Control_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs args)
+        {
+            // Если текущий контрол является FocusScope, то мы должны сохранить элемент,
+            // который имел фокус, чтобы восстановить его, когда FocusScope получит его обратно
+            this.StoredFocus = this.IsFocusScope ? args.OldFocus : null;
 
-        //    // Focusable controls invalidated automatically when lose focus
-        //    if (this.Focusable)
-        //        Invalidate();
-        //}
+            // Focusable controls invalidated automatically when lose focus
+            if (this.Focusable)
+                Invalidate();
+        }
 
         public Control()
         {

@@ -17,7 +17,7 @@ namespace ConsoleFramework.Controls
     /// outsideClickWillCloseWindow = true, клик по самому комбобоксу приводил бы к мгновенному закрытию
     /// и открытию комбобокса заново.
     /// </summary>
-    public class ComboBox : Control
+    internal class ComboBox : Control
     {
         private readonly bool shadow;
 

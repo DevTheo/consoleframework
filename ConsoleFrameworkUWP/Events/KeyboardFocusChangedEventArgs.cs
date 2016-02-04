@@ -3,9 +3,9 @@
 namespace ConsoleFramework.Events
 {
 
-    public delegate void KeyboardFocusChangedEventHandler(object sender, KeyboardFocusChangedEventArgs args);
+    internal delegate void KeyboardFocusChangedEventHandler(object sender, KeyboardFocusChangedEventArgs args);
 
-    public class KeyboardFocusChangedEventArgs : RoutedEventArgs
+    internal class KeyboardFocusChangedEventArgs : RoutedEventArgs
     {
         public KeyboardFocusChangedEventArgs(object source, RoutedEvent routedEvent) : base(source, routedEvent)
         {

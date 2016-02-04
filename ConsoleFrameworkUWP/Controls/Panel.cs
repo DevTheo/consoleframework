@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using ConsoleFramework.Core;
 using ConsoleFramework.Native;
 using ConsoleFramework.Rendering;
-using Xaml;
+using Windows.UI.Xaml.Markup;
 
 namespace ConsoleFramework.Controls
 {
@@ -20,8 +20,8 @@ namespace ConsoleFramework.Controls
     /// Может быть самым первым контролом программы (окно не может, к примеру, оно может существовать
     /// только в рамках хоста окон).
     /// </summary>
-    [ContentProperty("XChildren")]
-    public class Panel : Control {
+    [ContentProperty(Name = "XChildren")]
+    internal class Panel : Control {
         public Panel() {
             xchildren = new UIElementCollection(this);
         }

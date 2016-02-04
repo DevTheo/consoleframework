@@ -4,7 +4,7 @@ using ConsoleFramework.Rendering;
 
 namespace ConsoleFramework.Controls
 {
-    public class ProgressBar : Control
+    internal class ProgressBar : Control
     {
         private int percent;
 

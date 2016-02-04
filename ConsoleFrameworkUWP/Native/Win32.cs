@@ -11,56 +11,56 @@ namespace ConsoleFramework.Native
     {
         public static uint INFINITE = 0xFFFFFFFF;
 
-        //[DllImport("kernel32.dll", ExactSpelling = true, SetLastError = true)]
-        //public static extern void AllocConsole();
+        [DllImport("kernel32.dll", ExactSpelling = true, SetLastError = true)]
+        public static extern void AllocConsole();
 
-        ///// <summary>
-        ///// Returns current console mode. Program saves it before changing and
-        ///// restores before exit.
-        ///// </summary>
-        //[DllImport("kernel32.dll", ExactSpelling = true, SetLastError = true)]
-        //public static extern bool GetConsoleMode(IntPtr hConsoleHandle, [Out] out uint mode);
+        /// <summary>
+        /// Returns current console mode. Program saves it before changing and
+        /// restores before exit.
+        /// </summary>
+        [DllImport("kernel32.dll", ExactSpelling = true, SetLastError = true)]
+        public static extern bool GetConsoleMode(IntPtr hConsoleHandle, [Out] out uint mode);
 
-        ///// <summary>
-        ///// It is used to set ENABLE_WINDOW_INPUT flag, which enables the events
-        ///// about console screen buffer resize.
-        ///// </summary>
-        //[DllImport("kernel32.dll", ExactSpelling = true, SetLastError = true)]
-        //public static extern bool SetConsoleMode(IntPtr hConsoleHandle, uint mode);
+        /// <summary>
+        /// It is used to set ENABLE_WINDOW_INPUT flag, which enables the events
+        /// about console screen buffer resize.
+        /// </summary>
+        [DllImport("kernel32.dll", ExactSpelling = true, SetLastError = true)]
+        public static extern bool SetConsoleMode(IntPtr hConsoleHandle, uint mode);
 
-        //[DllImport("kernel32.dll")]
-        //public static extern bool GetConsoleScreenBufferInfo(IntPtr hConsoleOutput,
-        //    out CONSOLE_SCREEN_BUFFER_INFO lpConsoleScreenBufferInfo);
+        [DllImport("kernel32.dll")]
+        public static extern bool GetConsoleScreenBufferInfo(IntPtr hConsoleOutput,
+            out CONSOLE_SCREEN_BUFFER_INFO lpConsoleScreenBufferInfo);
 
-        //[DllImport("kernel32.dll", ExactSpelling = true, SetLastError = true)]
-        //public static extern IntPtr GetStdHandle([MarshalAs(UnmanagedType.I4)]StdHandleType nStdHandle);
+        [DllImport("kernel32.dll", ExactSpelling = true, SetLastError = true)]
+        public static extern IntPtr GetStdHandle([MarshalAs(UnmanagedType.I4)]StdHandleType nStdHandle);
 
-        //[DllImport("kernel32.dll", ExactSpelling = true)]
-        //public static extern uint WaitForMultipleObjects(uint nCount,
-        //                                                 [MarshalAs(UnmanagedType.LPArray)] IntPtr[] lpHandles,
-        //                                                 bool bWaitAll, uint dwMilliseconds);
+        [DllImport("kernel32.dll", ExactSpelling = true)]
+        public static extern uint WaitForMultipleObjects(uint nCount,
+                                                         [MarshalAs(UnmanagedType.LPArray)] IntPtr[] lpHandles,
+                                                         bool bWaitAll, uint dwMilliseconds);
 
-        //[DllImport("kernel32.dll", EntryPoint = "ReadConsoleInputW", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        //public static extern bool ReadConsoleInput(IntPtr hConsoleInput,
-        //                                           [Out] INPUT_RECORD[] lpBuffer,
-        //                                           uint nLength, out uint lpNumberOfEventsRead);
+        [DllImport("kernel32.dll", EntryPoint = "ReadConsoleInputW", CharSet = CharSet.Unicode, ExactSpelling = true)]
+        public static extern bool ReadConsoleInput(IntPtr hConsoleInput,
+                                                   [Out] INPUT_RECORD[] lpBuffer,
+                                                   uint nLength, out uint lpNumberOfEventsRead);
 
-        //[DllImport("kernel32.dll", SetLastError = true, EntryPoint = "WriteConsoleOutputW")]
-        //public static extern bool WriteConsoleOutputCore(IntPtr hConsoleOutput, CHAR_INFO[,] lpBuffer, COORD dwBufferSize,
-        //                                             COORD dwBufferCoord, ref SMALL_RECT lpWriteRegion);
+        [DllImport("kernel32.dll", SetLastError = true, EntryPoint = "WriteConsoleOutputW")]
+        public static extern bool WriteConsoleOutputCore(IntPtr hConsoleOutput, CHAR_INFO[,] lpBuffer, COORD dwBufferSize,
+                                                     COORD dwBufferCoord, ref SMALL_RECT lpWriteRegion);
 
         [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
         private static extern int FormatMessage(int dwFlags, string lpSource, int dwMessageId, int dwLanguageId,
                                                StringBuilder lpBuffer, int nSize, string[] Arguments);
                 
-        //[DllImport("kernel32.dll", SetLastError = true)]
-        //public static extern bool SetConsoleCursorPosition(IntPtr hConsoleOutput, COORD dwCursorPosition);
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern bool SetConsoleCursorPosition(IntPtr hConsoleOutput, COORD dwCursorPosition);
 
-        //[DllImport("kernel32.dll", SetLastError = true)]
-        //public static extern bool GetConsoleCursorInfo(IntPtr hConsoleOutput, out CONSOLE_CURSOR_INFO lpConsoleCursorInfo);
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern bool GetConsoleCursorInfo(IntPtr hConsoleOutput, out CONSOLE_CURSOR_INFO lpConsoleCursorInfo);
 
-        //[DllImport("kernel32.dll", SetLastError = true)]
-        //public static extern bool SetConsoleCursorInfo(IntPtr hConsoleOutput, [In] ref CONSOLE_CURSOR_INFO lpConsoleCursorInfo);
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern bool SetConsoleCursorInfo(IntPtr hConsoleOutput, [In] ref CONSOLE_CURSOR_INFO lpConsoleCursorInfo);
 
         public static string GetLastErrorMessage()
         {
@@ -72,17 +72,17 @@ namespace ConsoleFramework.Native
             return strLastErrorMessage.ToString();
         }
 
-        //[DllImport("user32.dll")]
-        //public static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
+        [DllImport("user32.dll")]
+        public static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
 
-        //[DllImport("kernel32.dll")]
-        //public static extern IntPtr GetConsoleWindow();
+        [DllImport("kernel32.dll")]
+        public static extern IntPtr GetConsoleWindow();
 
-        //[DllImport("user32.dll")]
-        //public static extern bool IsZoomed(IntPtr hwnd);
+        [DllImport("user32.dll")]
+        public static extern bool IsZoomed(IntPtr hwnd);
 
-        //[DllImport("user32.dll")]
-        //public static extern bool IsIconic(IntPtr hwnd);
+        [DllImport("user32.dll")]
+        public static extern bool IsIconic(IntPtr hwnd);
 
         public const UInt32 WM_SYSCOMMAND = 0x0112;
 

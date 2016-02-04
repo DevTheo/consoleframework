@@ -3,9 +3,9 @@
 namespace ConsoleFramework.Events
 {
 
-    public delegate void KeyEventHandler(object sender, KeyEventArgs args);
+    internal delegate void KeyEventHandler(object sender, KeyEventArgs args);
 
-    public class KeyEventArgs : RoutedEventArgs
+    internal class KeyEventArgs : RoutedEventArgs
     {
         public KeyEventArgs(object source, RoutedEvent routedEvent) : base(source, routedEvent)
         {

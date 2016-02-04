@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ConsoleFramework.Core;
+using ConsoleFramework.UWP;
 
 namespace ConsoleFramework.Controls
 {
     public delegate void MessageBoxClosedEventHandler(MessageBoxResult result);
 
-    public class MessageBox : Window
+    internal class MessageBox : Window
     {
         private readonly TextBlock textBlock;
 

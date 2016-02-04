@@ -8,7 +8,7 @@ namespace ConsoleFramework.Controls
     /// <summary>
     /// Оборачивает указанный контрол рамкой с заголовком.
     /// </summary>
-    public class GroupBox : Control
+    internal class GroupBox : Control
     {
         private string title;
         public string Title {

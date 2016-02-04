@@ -108,11 +108,28 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Binding\Adapters\IBindingAdapter.cs" />
+    <Compile Include="Binding\BindingBase.cs" />
+    <Compile Include="Binding\BindingMode.cs" />
+    <Compile Include="Binding\BindingResult.cs" />
+    <Compile Include="Binding\BindingSettingsBase.cs" />
+    <Compile Include="Binding\Converters\ConversionResult.cs" />
+    <Compile Include="Binding\Converters\IBindingConverter.cs" />
+    <Compile Include="Binding\Converters\ReversedConverter.cs" />
+    <Compile Include="Binding\Converters\StringToIntegerConverter.cs" />
+    <Compile Include="Binding\Observables\IObservableList.cs" />
+    <Compile Include="Binding\Observables\ObservableList.cs" />
+    <Compile Include="Binding\Observables\ObservableListOfT.cs" />
+    <Compile Include="Binding\Validators\IBindingValidator.cs" />
+    <Compile Include="Binding\Validators\RequiredValidator.cs" />
+    <Compile Include="Binding\Validators\ValidationResult.cs" />
     <Compile Include="ConsoleApplication.cs" />
     <Compile Include="Controls\Button.cs" />
     <Compile Include="Controls\ButtonBase.cs" />
     <Compile Include="Controls\CheckBox.cs" />
     <Compile Include="Controls\ComboBox.cs" />
+    <Compile Include="Controls\ConsoleKey.cs" />
+    <Compile Include="Controls\ConsoleKeyInfo.cs" />
     <Compile Include="Controls\ContextMenu.cs" />
     <Compile Include="Controls\Control.cs" />
     <Compile Include="Controls\Grid.cs" />

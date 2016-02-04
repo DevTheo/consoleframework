@@ -24,7 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "uwp", "uwp", "{1A6549A1-B56
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "original", "original", "{86DC0C90-4EBE-49F3-9A85-EA7EB723A889}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleFramework.UWP1", "ConsoleFrameworkUWP\ConsoleFramework.UWP1.csproj", "{41F55B03-9F8F-4C20-A5AB-55E11B690595}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleFramework.UWP", "ConsoleFrameworkUWP\ConsoleFramework.UWP.csproj", "{41F55B03-9F8F-4C20-A5AB-55E11B690595}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

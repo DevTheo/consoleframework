@@ -10,7 +10,7 @@ namespace ConsoleFramework.Controls
     /// <summary>
     /// Event args containing info for ScrollViewer - how to display inner content.
     /// </summary>
-    public class ContentShouldBeScrolledEventArgs : RoutedEventArgs
+    internal class ContentShouldBeScrolledEventArgs : RoutedEventArgs
     {
         private readonly int? mostLeftVisibleX;
         private readonly int? mostRightVisibleX;
@@ -48,7 +48,7 @@ namespace ConsoleFramework.Controls
         }
     }
 
-    public delegate void ContentShouldBeScrolledEventHandler(object sender,
+    internal delegate void ContentShouldBeScrolledEventHandler(object sender,
                                                                   ContentShouldBeScrolledEventArgs args);
 
 
@@ -57,7 +57,7 @@ namespace ConsoleFramework.Controls
     /// оно не вмещается в отведённое пространство.
     /// todo : add scroller dragging support
     /// </summary>
-    public class ScrollViewer : Control
+    internal class ScrollViewer : Control
     {
         /// <summary>
         /// Event can be fired by children when needs to explicitly set current
@@ -226,14 +226,14 @@ namespace ConsoleFramework.Controls
                     }
                 } else if ( pos.Y == ActualHeight - 1 ) {
                     // Clicked somewhere in scrollbar
-                    Point? horizontalScrollerPos = HorizontalScrollerPos;
-                    if ( horizontalScrollerPos.HasValue ) {
+                    Point horizontalScrollerPos = HorizontalScrollerPos;
+                    if ( horizontalScrollerPos != null ) {
                         int remainingWidth = ActualWidth - ( verticalScrollVisible ? 1 : 0 );
                         int itemsPerScrollerPos = Content.RenderSize.Width/remainingWidth;
-                        if ( pos.X < horizontalScrollerPos.Value.X ) {
+                        if ( pos.X < horizontalScrollerPos.X ) {
                             deltaX = Math.Max( 0, deltaX - itemsPerScrollerPos );
                             Invalidate(  );
-                        } else if ( pos.X > horizontalScrollerPos.Value.X ) {
+                        } else if ( pos.X > horizontalScrollerPos.X ) {
                             deltaX = Math.Min(Content.RenderSize.Width - remainingWidth,
                                 deltaX + itemsPerScrollerPos);
                             Invalidate();
@@ -262,14 +262,14 @@ namespace ConsoleFramework.Controls
                     }
                 } else if ( pos.X == ActualWidth - 1 ) {
                     // Clicked somewhere in scrollbar
-                    Point? verticalScrollerPos = VerticalScrollerPos;
-                    if ( verticalScrollerPos.HasValue ) {
+                    Point verticalScrollerPos = VerticalScrollerPos;
+                    if ( verticalScrollerPos != null ) {
                         int remainingHeight = ActualHeight - ( horizontalScrollVisible ? 1 : 0 );
                         int itemsPerScrollerPos = Content.RenderSize.Height/remainingHeight;
-                        if ( pos.Y < verticalScrollerPos.Value.Y ) {
+                        if ( pos.Y < verticalScrollerPos.Y ) {
                             deltaY = Math.Max( 0, deltaY - itemsPerScrollerPos );
                             Invalidate(  );
-                        } else if ( pos.Y > verticalScrollerPos.Value.Y ) {
+                        } else if ( pos.Y > verticalScrollerPos.Y ) {
                             deltaY = Math.Min(Content.RenderSize.Height - remainingHeight,
                                                 deltaY + itemsPerScrollerPos);
                             Invalidate();
@@ -370,7 +370,7 @@ namespace ConsoleFramework.Controls
         /// <summary>
         /// Returns position of horizontal scroller if it is visible now, null otherwise.
         /// </summary>
-        public Point? HorizontalScrollerPos {
+        public Point HorizontalScrollerPos {
             get {
                 if ( !horizontalScrollVisible ) return null;
 
@@ -399,7 +399,7 @@ namespace ConsoleFramework.Controls
         /// <summary>
         /// Returns position of scroller if it is visible now, null otherwise.
         /// </summary>
-        public Point? VerticalScrollerPos {
+        public Point VerticalScrollerPos {
             get {
                 if ( !verticalScrollVisible ) return null;
 

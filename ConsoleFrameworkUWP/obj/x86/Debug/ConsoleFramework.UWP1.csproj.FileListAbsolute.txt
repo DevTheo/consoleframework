@@ -1,0 +1,3 @@
+D:\source\uwp\consoleframework\ConsoleFrameworkUWP\obj\x86\Debug\ConsoleFramework.UWP1.csprojResolveAssemblyReference.cache
+D:\source\uwp\consoleframework\ConsoleFrameworkUWP\obj\x86\Debug\ConsoleFramework.UWP.winmdobj
+D:\source\uwp\consoleframework\ConsoleFrameworkUWP\obj\x86\Debug\ConsoleFramework.UWP.compile.pdb

@@ -9,7 +9,7 @@ namespace ConsoleFramework.Rendering
     /// Represents the buffer prepared to output into terminal.
     /// Provides indexer-like access to buffer and method <see cref="Flush(ConsoleFramework.Core.Rect)"/>.
     /// </summary>
-    public class PhysicalCanvas
+    internal class PhysicalCanvas
     {
         private readonly IntPtr stdOutputHandle = IntPtr.Zero;
 

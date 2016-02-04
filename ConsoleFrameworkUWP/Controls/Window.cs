@@ -3,6 +3,7 @@ using ConsoleFramework.Core;
 using ConsoleFramework.Events;
 using ConsoleFramework.Native;
 using ConsoleFramework.Rendering;
+using ConsoleFramework.UWP;
 
 namespace ConsoleFramework.Controls
 {
@@ -11,7 +12,7 @@ namespace ConsoleFramework.Controls
     /// Как правило, в роли дочернего элемента будут использоваться менеджеры размещения.
     /// Window должно знать о хосте, в контексте которого оно располагается и уметь с ним взаимодействовать.
     /// </summary>
-    public class Window : Control
+    internal class Window : Control
     {
         public static RoutedEvent ActivatedEvent = EventManager.RegisterRoutedEvent("Activated", RoutingStrategy.Direct, typeof(EventHandler), typeof(Window));
         public static RoutedEvent DeactivatedEvent = EventManager.RegisterRoutedEvent("Deactivated", RoutingStrategy.Direct, typeof(EventHandler), typeof(Window));

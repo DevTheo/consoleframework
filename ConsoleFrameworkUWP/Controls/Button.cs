@@ -6,7 +6,7 @@ using Windows.UI.Xaml.Markup;
 namespace ConsoleFramework.Controls
 {
     [ContentProperty(Name = "Caption")]
-    public sealed class Button : ButtonBase {
+    internal class Button : ButtonBase {
         private string caption;
         public string Caption {
             get {

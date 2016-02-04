@@ -5,11 +5,11 @@ using ConsoleFramework.Core;
 namespace ConsoleFramework.Events
 {
 
-    public delegate void MouseEventHandler(object sender, MouseEventArgs e);
+    internal delegate void MouseEventHandler(object sender, MouseEventArgs e);
 
-    public delegate void MouseButtonEventHandler(object sender, MouseButtonEventArgs e);
+    internal delegate void MouseButtonEventHandler(object sender, MouseButtonEventArgs e);
 
-    public delegate void MouseWheelEventHandler(object sender, MouseWheelEventArgs e);
+    internal delegate void MouseWheelEventHandler(object sender, MouseWheelEventArgs e);
 
     public enum MouseButtonState
     {
@@ -17,7 +17,7 @@ namespace ConsoleFramework.Events
         Pressed
     }
 
-    public class MouseWheelEventArgs : MouseEventArgs
+    internal class MouseWheelEventArgs : MouseEventArgs
     {
         public MouseWheelEventArgs(object source, RoutedEvent routedEvent, Point rawPosition,
                                     MouseButtonState leftButton, MouseButtonState middleButton,
@@ -41,7 +41,7 @@ namespace ConsoleFramework.Events
         Right
     }
 
-    public class MouseButtonEventArgs : MouseEventArgs
+    internal class MouseButtonEventArgs : MouseEventArgs
     {
         private readonly MouseButton button;
         private readonly int clickCount;
@@ -102,7 +102,7 @@ namespace ConsoleFramework.Events
     }
 
 
-    public class MouseEventArgs : RoutedEventArgs
+    internal class MouseEventArgs : RoutedEventArgs
     {
         public MouseEventArgs(object source, RoutedEvent routedEvent) : base(source, routedEvent)
         {

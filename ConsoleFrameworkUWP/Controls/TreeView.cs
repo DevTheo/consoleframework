@@ -5,18 +5,18 @@ using System.Linq;
 using Binding.Observables;
 using ConsoleFramework.Core;
 using ConsoleFramework.Events;
-using Xaml;
 using ListChangedEventArgs = Binding.Observables.ListChangedEventArgs;
+using Windows.UI.Xaml.Markup;
 
 namespace ConsoleFramework.Controls
 {
-    public interface IItemsSource
+    internal interface IItemsSource
     {
         IList< TreeItem > GetItems( );
     }
 
-    [ContentProperty("Items")]
-    public class TreeItem : INotifyPropertyChanged
+    [ContentProperty(Name = "Items")]
+    internal class TreeItem : INotifyPropertyChanged
     {
         /// <summary>
         /// Pos in TreeView listbox.
@@ -92,8 +92,8 @@ namespace ConsoleFramework.Controls
         }
     }
 
-    [ContentProperty("Items")]
-    public class TreeView : Control
+    [ContentProperty(Name ="Items")]
+    internal class TreeView : Control
     {
         private readonly ObservableList< TreeItem > items = new ObservableList< TreeItem >(
             new List< TreeItem >( ) );

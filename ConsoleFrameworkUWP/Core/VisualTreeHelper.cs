@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using ConsoleFramework.Controls;
+using ConsoleFramework.UWP;
 
 namespace ConsoleFramework.Core
 {
-    public class VisualTreeHelper
+    internal class VisualTreeHelper
     {
         public static List<Control> FindAllChilds(Control control, Func<Control, bool> predicate)
         {

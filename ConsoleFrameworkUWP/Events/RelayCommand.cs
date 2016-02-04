@@ -6,7 +6,7 @@ namespace ConsoleFramework.Events
     /// Command constructed from delegates.
     /// CanExecute = True by default if no canExecute functor provided.
     /// </summary>
-    public class RelayCommand : ICommand
+    internal class RelayCommand : ICommand
     {
         private readonly Action<object> action;
         private readonly Func<object, bool> canExecute;

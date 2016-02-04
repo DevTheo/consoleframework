@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using ConsoleFramework.Controls;
 using ConsoleFramework.Core;
+using ConsoleFramework.UWP;
 
 namespace ConsoleFramework.Rendering
 {
@@ -31,7 +32,7 @@ namespace ConsoleFramework.Rendering
         }
 
         private Control rootElement;
-        public Control RootElement
+        internal Control RootElement
         {
             get
             {
@@ -50,7 +51,7 @@ namespace ConsoleFramework.Rendering
             }
         }
 
-        public PhysicalCanvas Canvas
+        internal PhysicalCanvas Canvas
         {
             get;
             set;

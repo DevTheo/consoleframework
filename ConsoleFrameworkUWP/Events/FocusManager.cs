@@ -54,7 +54,7 @@ namespace ConsoleFramework.Events
         /// <summary>
         /// Control that has a keyboard focus now.
         /// </summary>
-        public Control FocusedElement
+        internal Control FocusedElement
         {
             get
             {
@@ -132,7 +132,7 @@ namespace ConsoleFramework.Events
         /// <summary>
         /// Текущая область фокуса
         /// </summary>
-        public Control CurrentScope
+        internal Control CurrentScope
         {
             get { return currentScope; }
         }
@@ -144,7 +144,7 @@ namespace ConsoleFramework.Events
         /// Если область фокуса не содержит Focusable элементов, операция не будет выполнена.
         /// </summary>
         /// <param name="scope"></param>
-        public void SetFocusScope(Control scope)
+        internal void SetFocusScope(Control scope)
         {
             SetFocus(scope, null);
         }
@@ -157,7 +157,7 @@ namespace ConsoleFramework.Events
         /// (не будут генерироваться маршрутизируемые события, назначаемые текущему фокусному элементу).
         /// </summary>
         /// <param name="control"></param>
-        public void SetFocus(Control control)
+        internal void SetFocus(Control control)
         {
             if (null == control)
             {
@@ -196,7 +196,7 @@ namespace ConsoleFramework.Events
         /// </summary>
         /// <param name="scope"></param>
         /// <param name="control"></param>
-        public void SetFocus(Control scope, Control control)
+        internal void SetFocus(Control scope, Control control)
         {
             if (scope == null)
                 throw new ArgumentNullException("scope");

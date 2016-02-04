@@ -3,9 +3,9 @@
 namespace ConsoleFramework.Events
 {
 
-    public delegate void RoutedEventHandler(object sender, RoutedEventArgs e);
+    internal delegate void RoutedEventHandler(object sender, RoutedEventArgs e);
 
-    public class RoutedEventArgs : EventArgs
+    internal class RoutedEventArgs : EventArgs
     {
         private bool handled;
         private readonly object source;

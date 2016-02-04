@@ -1,9 +1,9 @@
-﻿using System;
-using Binding.Converters;
+﻿using Binding.Converters;
+using System;
 
 namespace ConsoleFramework.Xaml
 {
-    public class NotBooleanConverter : IBindingConverter
+    internal class NotBooleanConverter : IBindingConverter
     {
         public Type FirstType {
             get {

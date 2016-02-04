@@ -1,15 +1,14 @@
 ﻿using System;
 using ConsoleFramework.Native;
-using Xaml;
 
 namespace ConsoleFramework.Events
 {
-    [TypeConverter(typeof(KeyGestureConverter))]
-    public class KeyGesture
+    //[TypeConverter(typeof(KeyGestureConverter))]
+    internal class KeyGesture
     {
         private readonly string _displayString;
         private readonly VirtualKeys _key;
-        private static readonly ITypeConverter _keyGestureConverter = new KeyGestureConverter();
+        private static readonly KeyGestureConverter _keyGestureConverter = new KeyGestureConverter();
         private readonly ModifierKeys _modifiers;
 
         public KeyGesture(VirtualKeys key) : this(key, ModifierKeys.None)

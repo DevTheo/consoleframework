@@ -1,12 +1,12 @@
 ﻿using ConsoleFramework.Core;
 using ConsoleFramework.Native;
 using ConsoleFramework.Rendering;
-using Xaml;
+using Windows.UI.Xaml.Markup;
 
 namespace ConsoleFramework.Controls
 {
-    [ContentProperty("Text")]
-    public class TextBlock : Control {
+    [ContentProperty(Name = "Text")]
+    internal class TextBlock : Control {
         private string text;
 
         private void initialize() {

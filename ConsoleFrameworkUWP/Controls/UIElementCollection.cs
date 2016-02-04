@@ -5,11 +5,11 @@ using Binding.Observables;
 
 namespace ConsoleFramework.Controls
 {
-    public partial class Control {
+    internal partial class Control {
         public delegate void ControlAddedEventHandler(Control control);
         public delegate void ControlRemovedEventHandler(Control control);
 
-        public class UIElementCollection : IList {
+        internal class UIElementCollection : IList {
             private readonly IList list = new ObservableList<Control>(new List<Control>());
             private readonly Control parent;
 

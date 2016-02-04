@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using Binding.Observables;
 using ConsoleFramework.Core;
-using Xaml;
+using Windows.UI.Xaml.Markup;
 
 namespace ConsoleFramework.Controls
 {
-    [ContentProperty( "Items" )]
-    public class ContextMenu
+    [ContentProperty( Name = "Items" )]
+    internal class ContextMenu
     {
         private readonly ObservableList< MenuItemBase > items = new ObservableList< MenuItemBase >(
             new List< MenuItemBase >( ) );

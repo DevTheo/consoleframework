@@ -1,6 +1,7 @@
 ﻿using System;
 using ConsoleFramework.Events;
 using ConsoleFramework.Native;
+using ConsoleFramework.UWP;
 
 namespace ConsoleFramework.Controls
 {
@@ -42,16 +43,18 @@ namespace ConsoleFramework.Controls
         public static readonly RoutedEvent ClickEvent = EventManager.RegisterRoutedEvent("Click", 
             RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ButtonBase));
 
-        public event RoutedEventHandler OnClick {
-            add {
-                AddHandler(ClickEvent, value);
-            }
-            remove {
-                RemoveHandler(ClickEvent, value);
-            }
-        }
+        public event RoutedEventHandler OnClick;
+        //{
+        //    add {
+        //        AddHandler(ClickEvent, value);
+        //    }
+        //    remove {
+        //        RemoveHandler(ClickEvent, value);
+        //    }
+        //}
 
         protected ButtonBase() {
+            
             AddHandler(MouseDownEvent, new MouseButtonEventHandler(Button_OnMouseDown));
             AddHandler(MouseUpEvent, new MouseButtonEventHandler(Button_OnMouseUp));
             AddHandler(MouseEnterEvent, new MouseEventHandler(Button_MouseEnter));

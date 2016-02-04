@@ -6,7 +6,8 @@ using ConsoleFramework.Core;
 using ConsoleFramework.Events;
 using ConsoleFramework.Native;
 using ConsoleFramework.Rendering;
-using Xaml;
+using Windows.UI.Xaml.Markup;
+using ConsoleFramework.UWP;
 
 namespace ConsoleFramework.Controls
 {
@@ -18,7 +19,7 @@ namespace ConsoleFramework.Controls
         Separator
     }
 
-    public class MenuItemBase : Control
+    internal class MenuItemBase : Control
     {
         
     }
@@ -26,8 +27,8 @@ namespace ConsoleFramework.Controls
     /// <summary>
     /// Item of menu.
     /// </summary>
-    [ContentProperty("Items")]
-    public class MenuItem : MenuItemBase, ICommandSource
+    [ContentProperty(Name = "Items")]
+    internal class MenuItem : MenuItemBase, ICommandSource
     {
         public static readonly RoutedEvent ClickEvent = EventManager.RegisterRoutedEvent("Click",
             RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(MenuItem));
@@ -43,14 +44,15 @@ namespace ConsoleFramework.Controls
                 popup.DisconnectMenuItems(  );
         }
 
-        public event RoutedEventHandler Click {
-            add {
-                AddHandler(ClickEvent, value);
-            }
-            remove {
-                RemoveHandler(ClickEvent, value);
-            }
-        }
+        public event RoutedEventHandler Click;
+        //{
+        //    add {
+        //        AddHandler(ClickEvent, value);
+        //    }
+        //    remove {
+        //        RemoveHandler(ClickEvent, value);
+        //    }
+        //}
 
         private bool _expanded;
         internal bool expanded {
@@ -516,7 +518,7 @@ namespace ConsoleFramework.Controls
     /// <summary>
     /// Cannot be added in root menu.
     /// </summary>
-    public class Separator : MenuItemBase
+    internal class Separator : MenuItemBase
     {
         public Separator( ) {
             Focusable = false;
@@ -540,7 +542,7 @@ namespace ConsoleFramework.Controls
         }
     }
 
-    public class Menu : Control
+    internal class Menu : Control
     {
         private readonly ObservableList<MenuItemBase> items = new ObservableList<MenuItemBase>(
             new List<MenuItemBase>());

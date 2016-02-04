@@ -6,10 +6,21 @@ using ConsoleFramework.Native;
 using ConsoleFramework.Rendering;
 
 namespace ConsoleFramework.Controls {
+
+    [Flags]
+    public enum ConsoleModifiers
+    {
+        None = 0,
+        Alt = 1,
+        Shift = 2,
+        Control = 4
+    }
+
+
     /// <summary>
     /// todo : добавить обработку выделения текста
     /// </summary>
-    public class TextBox : Control {
+    internal class TextBox : Control {
         public TextBox() {
             KeyDown += TextBox_KeyDown;
             MouseDown += OnMouseDown;
@@ -66,7 +77,7 @@ namespace ConsoleFramework.Controls {
                         Text = leftPart + rightPart;
                         //
                     } else {
-                        Console.Beep();
+                        //Console.Beep();
                     }
                 }
                 if (keyInfo.Key == ConsoleKey.Backspace) {
@@ -83,7 +94,7 @@ namespace ConsoleFramework.Controls {
                             }
                         }
                     } else {
-                        Console.Beep();
+                        //Console.Beep();
                     }
                 }
                 if (keyInfo.Key == ConsoleKey.LeftArrow) {
@@ -98,7 +109,7 @@ namespace ConsoleFramework.Controls {
                             }
                         }
                     } else {
-                        Console.Beep();
+                        //Console.Beep();
                     }
                 }
                 if (keyInfo.Key == ConsoleKey.RightArrow) {
@@ -113,7 +124,7 @@ namespace ConsoleFramework.Controls {
                             }
                         }
                     } else {
-                        Console.Beep();
+                        //Console.Beep();
                     }
                 }
                 if (keyInfo.Key == ConsoleKey.Home) {
@@ -123,7 +134,7 @@ namespace ConsoleFramework.Controls {
                         CursorPosition = new Point(cursorPosition + 1, 0);
                         Invalidate();
                     } else {
-                        Console.Beep();
+                        //Console.Beep();
                     }
                 }
                 if (keyInfo.Key == ConsoleKey.End) {
@@ -133,7 +144,7 @@ namespace ConsoleFramework.Controls {
                         CursorPosition = new Point(cursorPosition + 1, 0);
                         Invalidate();
                     } else {
-                        Console.Beep();
+                        //Console.Beep();
                     }
                 }
             }

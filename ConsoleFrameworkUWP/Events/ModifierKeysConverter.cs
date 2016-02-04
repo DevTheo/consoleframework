@@ -1,9 +1,9 @@
 ﻿using System;
-using Xaml;
 
 namespace ConsoleFramework.Events
 {
-    [Flags, TypeConverter(typeof(ModifierKeysConverter))]
+    [Flags]
+    //[TypeConverter(typeof(ModifierKeysConverter))]
     public enum ModifierKeys
     {
         Alt = 1,
@@ -12,7 +12,7 @@ namespace ConsoleFramework.Events
         Shift = 4
     }
 
-    public class ModifierKeysConverter : ITypeConverter
+    internal class ModifierKeysConverter //: ITypeConverter
     {
         private const char Modifier_Delimiter = '+';
 

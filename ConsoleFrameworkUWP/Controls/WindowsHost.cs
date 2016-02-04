@@ -4,6 +4,7 @@ using ConsoleFramework.Core;
 using ConsoleFramework.Events;
 using ConsoleFramework.Native;
 using ConsoleFramework.Rendering;
+using ConsoleFramework.UWP;
 
 namespace ConsoleFramework.Controls
 {
@@ -12,7 +13,7 @@ namespace ConsoleFramework.Controls
     /// Хранит в себе список окон в порядке их Z-Order и отрисовывает рамки,
     /// управляет их перемещением.
     /// </summary>
-    public class WindowsHost : Control
+    internal class WindowsHost : Control
     {
         private Menu mainMenu;
         public Menu MainMenu

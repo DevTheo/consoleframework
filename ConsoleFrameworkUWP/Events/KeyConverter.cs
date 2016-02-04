@@ -1,10 +1,9 @@
 ﻿using System;
 using ConsoleFramework.Native;
-using Xaml;
 
 namespace ConsoleFramework.Events
 {
-    public class KeyConverter : ITypeConverter
+    internal class KeyConverter //: ITypeConverter
     {
         public bool CanConvertFrom(Type sourceType)
         {

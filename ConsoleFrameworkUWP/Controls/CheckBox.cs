@@ -8,7 +8,7 @@ namespace ConsoleFramework.Controls
     /// <summary>
     /// Represents a control that a user can select and clear.
     /// </summary>
-    public class CheckBox : ButtonBase
+    internal class CheckBox : ButtonBase
     {
         public CheckBox( ) {
             OnClick += CheckBox_OnClick;
