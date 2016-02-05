@@ -10,7 +10,7 @@ namespace ConsoleFramework.Rendering
     /// Stores rendered control content.
     /// Supports impositioning and opacity mask matrix.
     /// </summary>
-    public sealed class RenderingBuffer
+    internal sealed class RenderingBuffer
     {
         private CHAR_INFO[,] buffer;
         /// <summary> todo : convert to enum

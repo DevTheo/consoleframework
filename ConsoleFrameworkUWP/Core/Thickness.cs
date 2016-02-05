@@ -7,7 +7,7 @@ namespace ConsoleFramework.Core
     /// WPF Thickness analog but using integers instead doubles.
     /// </summary>
     //[TypeConverter(typeof(ThicknessConverter))]
-    public sealed class Thickness : IEquatable<Thickness>
+    internal sealed class Thickness : IEquatable<Thickness>
     {
         private int left;
         private int top;

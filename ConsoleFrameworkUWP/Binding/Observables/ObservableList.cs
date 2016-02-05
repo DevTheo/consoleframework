@@ -2,7 +2,7 @@
 using System.Collections;
 using ArrayList = System.Collections.Generic.List<object>;
 
-namespace Binding.Observables {
+namespace ConsoleFramework.Binding.Observables {
     /// <summary>
     /// Non-generic <see cref="IObservableList"/> implementation.
     /// </summary>

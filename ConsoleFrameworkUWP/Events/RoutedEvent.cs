@@ -25,7 +25,7 @@ namespace ConsoleFramework.Events
     /// <summary>
     /// Key for internal usage in routed event management maps.
     /// </summary>
-    public sealed class RoutedEventKey : IEquatable<RoutedEventKey>
+    internal sealed class RoutedEventKey : IEquatable<RoutedEventKey>
     {
         private readonly string name;
         private readonly Type ownerType;
@@ -96,15 +96,15 @@ namespace ConsoleFramework.Events
             }
         }
 
-        public static bool operator ==(RoutedEventKey left, RoutedEventKey right)
-        {
-            return Equals(left, right);
-        }
+        //public static bool operator ==(RoutedEventKey left, RoutedEventKey right)
+        //{
+        //    return Equals(left, right);
+        //}
 
-        public static bool operator !=(RoutedEventKey left, RoutedEventKey right)
-        {
-            return !Equals(left, right);
-        }
+        //public static bool operator !=(RoutedEventKey left, RoutedEventKey right)
+        //{
+        //    return !Equals(left, right);
+        //}
     }
 
     /// <summary>
@@ -169,7 +169,7 @@ namespace ConsoleFramework.Events
             }
         }
 
-        public RoutedEventKey Key
+        internal RoutedEventKey Key
         {
             get
             {

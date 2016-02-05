@@ -6,21 +6,21 @@ namespace ConsoleFramework.Core
     /// <summary>
     /// Converter for XAML. Supports only String -> Thickness conversion now.
     /// </summary>
-    public static class ThicknessConverter //: ITypeConverter
+    internal class ThicknessConverter //: ITypeConverter
     {
-        public static bool CanConvertFrom(this Thickness thickness, Type sourceType)
+        public bool CanConvertFrom(Type sourceType)
         {
             if (sourceType == typeof(string))
                 return true;
             return false;
         }
 
-        public static bool CanConvertTo(this Thickness thickness, Type destinationType)
+        public bool CanConvertTo(Type destinationType)
         {
             return false;
         }
 
-        public static object ConvertFrom(this Thickness thickness, object value)
+        public object ConvertFrom(object value)
         {
             if (value is String)
             {
@@ -51,7 +51,7 @@ namespace ConsoleFramework.Core
             throw new NotSupportedException();
         }
 
-        public static object ConvertTo(this Thickness thickness, object value, Type destinationType)
+        public object ConvertTo(object value, Type destinationType)
         {
             throw new NotSupportedException();
         }

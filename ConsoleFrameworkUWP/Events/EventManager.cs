@@ -14,7 +14,7 @@ namespace ConsoleFramework.Events
     /// Central point of events management routine.
     /// Provides events routing.
     /// </summary>
-    public sealed class EventManager
+    internal sealed class EventManager
     {
         private readonly Stack<Control> inputCaptureStack = new Stack<Control>();
 

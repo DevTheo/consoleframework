@@ -8,7 +8,7 @@ namespace ConsoleFramework.Controls
     /// <summary>
     /// Base class for buttons and toggle buttons (checkboxes and radio buttons).
     /// </summary>
-    internal abstract class ButtonBase : Control, ICommandSource
+    internal abstract class ButtonBase : Control //, ICommandSource
     {
         /// <summary>
         /// Is button in clicking mode (when mouse pressed but not released yet).
@@ -116,49 +116,49 @@ namespace ConsoleFramework.Controls
                 }
                 if (HitTest(args.RawPosition)) {
                     RaiseEvent(ClickEvent, new RoutedEventArgs(this, ClickEvent));
-                    if (command != null && command.CanExecute(CommandParameter)) {
-                        command.Execute(CommandParameter);
-                    }
+                    //if (command != null && command.CanExecute(CommandParameter)) {
+                    //    command.Execute(CommandParameter);
+                    //}
                 }
                 ConsoleApplication.Instance.EndCaptureInput(this);
                 args.Handled = true;
             }
         }
 
-        private ICommand command;
-        public ICommand Command {
-            get {
-                return command;
-            }
-            set {
-                if (command != value) {
-                    if (command != null) {
-                        command.CanExecuteChanged -= onCommandCanExecuteChanged;
-                    }
-                    command = value;
-                    command.CanExecuteChanged += onCommandCanExecuteChanged;
+        //private ICommand command;
+        //public ICommand Command {
+        //    get {
+        //        return command;
+        //    }
+        //    set {
+        //        if (command != value) {
+        //            if (command != null) {
+        //                command.CanExecuteChanged -= onCommandCanExecuteChanged;
+        //            }
+        //            command = value;
+        //            command.CanExecuteChanged += onCommandCanExecuteChanged;
 
-                    refreshCanExecute();
-                }
-            }
-        }
+        //            refreshCanExecute();
+        //        }
+        //    }
+        //}
 
-        private void onCommandCanExecuteChanged(object sender, EventArgs args) {
-            refreshCanExecute();
-        }
+        //private void onCommandCanExecuteChanged(object sender, EventArgs args) {
+        //    refreshCanExecute();
+        //}
 
-        private void refreshCanExecute() {
-            if (command == null) {
-                this.Disabled = false;
-                return;
-            }
+        //private void refreshCanExecute() {
+        //    if (command == null) {
+        //        this.Disabled = false;
+        //        return;
+        //    }
 
-            this.Disabled = !command.CanExecute(CommandParameter);
-        }
+        //    this.Disabled = !command.CanExecute(CommandParameter);
+        //}
 
-        public object CommandParameter {
-            get;
-            set;
-        }
+        //public object CommandParameter {
+        //    get;
+        //    set;
+        //}
     }
 }

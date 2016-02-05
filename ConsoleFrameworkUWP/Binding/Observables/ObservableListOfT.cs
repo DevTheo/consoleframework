@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ArrayList = System.Collections.Generic.List<object>;
 
-namespace Binding.Observables
+namespace ConsoleFramework.Binding.Observables
 {
     /// <summary>
     /// Generic implementation of <see cref="IObservableList"/>.
@@ -11,7 +11,7 @@ namespace Binding.Observables
     /// Collection&lt;T&gt; and List&lt;T&gt;.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ObservableList<T> : IObservableList, IList<T>, IList {
+    internal class ObservableList<T> : /*IObservableList,*/ IList<T>, IList {
         private readonly IList<T> list;
 
         public ObservableList(IList<T> list) {
@@ -132,7 +132,7 @@ namespace Binding.Observables
             set {
                 T removedItem = list[index];
                 list[index] = value;
-                raiseListElementReplaced(index, new List<object>() { removedItem });
+                raiseListElementReplaced(index, new ArrayList() { removedItem });
             }
         }
 
@@ -142,13 +142,13 @@ namespace Binding.Observables
             }
         }
 
-        private void raiseListElementsRemoved(int index, int length, IList<object> removedItems) {
+        private void raiseListElementsRemoved(int index, int length, ArrayList removedItems) {
             if (null != ListChanged) {
                 ListChanged.Invoke(this, new ListChangedEventArgs(ListChangedEventType.ItemsRemoved, index, length, removedItems));
             }
         }
 
-        private void raiseListElementReplaced(int index, IList<object> removedItems) {
+        private void raiseListElementReplaced(int index, ArrayList removedItems) {
             if (null != ListChanged) {
                 ListChanged.Invoke(this, new ListChangedEventArgs(ListChangedEventType.ItemReplaced, index, 1, removedItems));
             }

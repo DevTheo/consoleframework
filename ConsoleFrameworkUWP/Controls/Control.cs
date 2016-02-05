@@ -198,9 +198,9 @@ namespace ConsoleFramework.Controls
         //    remove { RemoveHandler(GotKeyboardFocusEvent, value); }
         //}
 
-                public void SetFocus() {
-                    ConsoleApplication.Instance.FocusManager.SetFocus(this);
-                }
+        //        public void SetFocus() {
+        //            ConsoleApplication.Instance.FocusManager.SetFocus(this);
+        //        }
 
         /// <summary>
         /// Обладает ли на данный момент текущий контрол фокусом (т.е. принимает клавиатурный ввод)
@@ -463,8 +463,8 @@ namespace ConsoleFramework.Controls
             Focusable = false;
             IsFocusScope = false;
             Visibility = Visibility.Visible;
-            //AddHandler(GotKeyboardFocusEvent, new KeyboardFocusChangedEventHandler(Control_GotKeyboardFocus));
-            //AddHandler(LostKeyboardFocusEvent, new KeyboardFocusChangedEventHandler(Control_LostKeyboardFocus));
+            AddHandler(GotKeyboardFocusEvent, new KeyboardFocusChangedEventHandler(Control_GotKeyboardFocus));
+            AddHandler(LostKeyboardFocusEvent, new KeyboardFocusChangedEventHandler(Control_LostKeyboardFocus));
             // todo : remove after issue https://github.com/sq/JSIL/issues/388 will be fixed
             this.Width = null;
             this.Height = null;
@@ -1142,7 +1142,7 @@ namespace ConsoleFramework.Controls
         {
             if (this.attachedToVisualTree)
             {
-                //ConsoleApplication.Instance.Renderer.AddControlToInvalidationQueue(this);
+                ConsoleApplication.Instance.Renderer.AddControlToInvalidationQueue(this);
                 if (Invalidated != null) Invalidated.Invoke(this, EventArgs.Empty);
             }
         }

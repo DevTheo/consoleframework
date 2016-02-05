@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Binding.Observables;
+using ConsoleFramework.Binding.Observables;
 using ConsoleFramework.Core;
 using Windows.UI.Xaml.Markup;
 

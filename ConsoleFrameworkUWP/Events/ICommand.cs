@@ -5,7 +5,7 @@ namespace ConsoleFramework.Events
     ///<summary>
     /// An interface that allows an application author to define a method to be invoked.
     ///</summary>
-    public interface ICommand
+    internal interface ICommand
     {
         /// <summary>
         /// Raised when the ability of the command to execute has changed.

@@ -12,7 +12,7 @@ namespace ConsoleFramework.Events
     /// Also maintains the console mouse cursor visibility according to
     /// current focused control.
     /// </summary>
-    public sealed class FocusManager
+    internal sealed class FocusManager
     {
         private readonly EventManager eventManager;
 
@@ -260,7 +260,7 @@ namespace ConsoleFramework.Events
         /// http://www.csharp411.com/c-stable-sort/
         /// todo : remove after JSIL OrderBy linq will be implemented
         /// </summary>
-        public static void InsertionSort<T>(IList<T> list, Comparison<T> comparison)
+        public static void InsertionSort(IList<object> list, Comparison<object> comparison)
         {
             if (list == null)
                 throw new ArgumentNullException("list");
@@ -270,7 +270,7 @@ namespace ConsoleFramework.Events
             int count = list.Count;
             for (int j = 1; j < count; j++)
             {
-                T key = list[j];
+                object key = list[j];
 
                 int i = j - 1;
                 for (; i >= 0 && comparison(list[i], key) > 0; i--)
@@ -307,7 +307,7 @@ namespace ConsoleFramework.Events
             while (i < children.Count)
             {
                 Control child = children[i];
-                List<Control> nested = new List<Control>(child.Children);
+                List<object> nested = new List<object>(child.Children);
 
                 // Using OrderBy instead List<T>.Sort() because the last one is unstable
                 // and can reorder elements with equal keys
@@ -315,12 +315,13 @@ namespace ConsoleFramework.Events
                 //nested = nested.OrderBy(control => control.TabOrder).ToList();
                 // todo : remove after JSIL OrderBy linq will be implemented
                 InsertionSort(nested, (a, b) => {
-                    return a.TabOrder.CompareTo(b.TabOrder);
+                    return ((Control)a).TabOrder.CompareTo(((Control) b).TabOrder);
                 });
 
                 if (nested.Count > 0)
                 {
-                    children.AddRange(nested);
+                    nested.ForEach(item => children.Add((Control) item));
+
                     children.RemoveAt(i);
                 }
                 else

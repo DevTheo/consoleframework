@@ -12,7 +12,7 @@ using ConsoleFramework.Rendering;
 
 namespace ConsoleFramework.UWP
 {
-    public sealed class TerminalSizeChangedEventArgs //: EventArgs
+    internal sealed class TerminalSizeChangedEventArgs //: EventArgs
     {
         public int Width { get; private set; }
         public int Height { get; private set; }
@@ -24,14 +24,14 @@ namespace ConsoleFramework.UWP
         }
     }
 
-    public delegate void TerminalSizeChangedHandler(object sender, TerminalSizeChangedEventArgs args);
+    internal delegate void TerminalSizeChangedHandler(object sender, TerminalSizeChangedEventArgs args);
 
     /// <summary>
     /// Console application entry point.
     /// Encapsulates messages loop and application lifecycle.
     /// Supports Windows and Linux.
     /// </summary>
-    public sealed class ConsoleApplication : IDisposable
+    internal sealed class ConsoleApplication : IDisposable
     {
         private bool maximized;
         private Size savedBufferSize;

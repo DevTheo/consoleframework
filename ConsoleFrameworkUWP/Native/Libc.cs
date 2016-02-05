@@ -12,29 +12,29 @@ namespace ConsoleFramework.Native
         /// <summary>
 		/// See the &lt;sys/poll.h&gt; and &lt;bits/poll.h&gt;
 		/// </summary>
-		[DllImport("libc.so.6", SetLastError = true)]
-		public static extern int poll( pollfd[] fds, int fdsCount, int timeout);
+		//[DllImport("libc.so.6", SetLastError = true)]
+		//public static extern int poll( pollfd[] fds, int fdsCount, int timeout);
 
 		/// <summary>
 		/// Creates a pipe object. fds must be initialized array of 2 items.
 		/// fds[0] will store descriptor for reading
 		/// fds[1] will store descriptor for writing
 		/// </summary>
-		[DllImport("libc.so.6", SetLastError = true)]
-		public static extern int pipe (int[] fds);
+		//[DllImport("libc.so.6", SetLastError = true)]
+		//public static extern int pipe (int[] fds);
 
 		/// <summary>
 		/// Creates the eventfd kernel object. Returns file descriptor for
 		/// created eventfd object.
 		/// </summary>
-		[DllImport("libc.so.6", SetLastError = true)]
-		public static extern int eventfd(uint initval, EVENTFD_FLAGS flags);
+		//[DllImport("libc.so.6", SetLastError = true)]
+		//public static extern int eventfd(uint initval, EVENTFD_FLAGS flags);
 		
-		[DllImport("libc.so.6", SetLastError = true)]
-		private static extern int read(int fd, out UInt64 buf, int count);
+		//[DllImport("libc.so.6", SetLastError = true)]
+		//private static extern int read(int fd, out UInt64 buf, int count);
 		
-		[DllImport("libc.so.6", SetLastError = true)]
-		private static extern int write(int fd, ref UInt64 buf, int count);
+		//[DllImport("libc.so.6", SetLastError = true)]
+		//private static extern int write(int fd, ref UInt64 buf, int count);
 		
 		/// <summary>
 		/// Used to read from eventfd file descriptor.
@@ -42,9 +42,9 @@ namespace ConsoleFramework.Native
 		/// <returns>
 		/// Number of bytes readed or -1 if error has occured.
 		/// </returns>
-		public static int readInt64(int fd, out UInt64 res) {
-			return read (fd, out res, sizeof(UInt64));
-		}
+		//public static int readInt64(int fd, out UInt64 res) {
+		//	return read (fd, out res, sizeof(UInt64));
+		//}
 		
 		/// <summary>
 		/// Used to write to eventfd file descriptor.
@@ -52,48 +52,48 @@ namespace ConsoleFramework.Native
 		/// <returns>
 		/// Number of bytes written or -1 if error has occured.
 		/// </returns>
-		public static int writeInt64(int fd, UInt64 u) {
-			return write(fd, ref u, sizeof(UInt64));
-		}
+		//public static int writeInt64(int fd, UInt64 u) {
+		//	return write(fd, ref u, sizeof(UInt64));
+		//}
 		
 		/// <summary>
 		/// Close the specified file descriptor.
 		/// </summary>
-		[DllImport("libc.so.6", SetLastError = true)]
-		public static extern int close(int fd);
-		
-		// Used in terminal size retrieving
-		public const Int32 STDIN_FILENO = 0;
+		//[DllImport("libc.so.6", SetLastError = true)]
+		//internal static extern int close(int fd);
 
-		// For Linux it hardcoded to this constant
-		public const Int32 TIOCGWINSZ_LINUX = 0x5413;
+        // Used in terminal size retrieving
+        //internal const Int32 STDIN_FILENO = 0;
 
-		// For Mac OS it is different
-		// https://groups.google.com/forum/#!msg/golang-nuts/eZgB_2RUDmQ/nv9wgeIoja4J
-		public const Int32 TIOCGWINSZ_DARWIN = 0x40087468;
+        // For Linux it hardcoded to this constant
+        //internal const Int32 TIOCGWINSZ_LINUX = 0x5413;
+
+        // For Mac OS it is different
+        // https://groups.google.com/forum/#!msg/golang-nuts/eZgB_2RUDmQ/nv9wgeIoja4J
+        //internal const Int32 TIOCGWINSZ_DARWIN = 0x40087468;
 		
 		/// <summary>
 		/// Used in terminal size retrieving.
 		/// </summary>
-		[DllImport("libc.so.6", SetLastError = true)]
-		public static extern int ioctl(int fd, int cmd, out winsize ws);
+		//[DllImport("libc.so.6", SetLastError = true)]
+        //internal static extern int ioctl(int fd, int cmd, out winsize ws);
 
         /// <summary>
         /// Interrupted system call. If after poll() error code is EINTR, this means
         /// that a signal was caught during poll().
         /// </summary>
-        public const Int32 EINTR = 4;
+        //internal const Int32 EINTR = 4;
 
         /// <summary>
         /// Returns actual terminal width and height.
         /// </summary>
         /// <param name="isDarwin">True if application is executed under Mac OS X.</param>
         /// <returns></returns>
-        public static winsize GetTerminalSize( bool isDarwin ) {
-            winsize ws;
-            ioctl(STDIN_FILENO, isDarwin ? TIOCGWINSZ_DARWIN : TIOCGWINSZ_LINUX, out ws);
-            return ws;
-        }
+        //public static winsize GetTerminalSize( bool isDarwin ) {
+        //    winsize ws;
+        //    ioctl(STDIN_FILENO, isDarwin ? TIOCGWINSZ_DARWIN : TIOCGWINSZ_LINUX, out ws);
+        //    return ws;
+        //}
     }
 	
 	/// <summary>
@@ -122,7 +122,7 @@ namespace ConsoleFramework.Native
 	
 	
 	[Flags]
-	public enum POLL_EVENTS : ushort {
+	public enum POLL_EVENTS : int {
 		NONE = 0x0000,
 		POLLIN = 0x001,
 		POLLPRI = 0x002,

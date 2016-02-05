@@ -108,21 +108,8 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Binding\Adapters\IBindingAdapter.cs" />
-    <Compile Include="Binding\BindingBase.cs" />
-    <Compile Include="Binding\BindingMode.cs" />
-    <Compile Include="Binding\BindingResult.cs" />
-    <Compile Include="Binding\BindingSettingsBase.cs" />
-    <Compile Include="Binding\Converters\ConversionResult.cs" />
-    <Compile Include="Binding\Converters\IBindingConverter.cs" />
-    <Compile Include="Binding\Converters\ReversedConverter.cs" />
-    <Compile Include="Binding\Converters\StringToIntegerConverter.cs" />
     <Compile Include="Binding\Observables\IObservableList.cs" />
-    <Compile Include="Binding\Observables\ObservableList.cs" />
     <Compile Include="Binding\Observables\ObservableListOfT.cs" />
-    <Compile Include="Binding\Validators\IBindingValidator.cs" />
-    <Compile Include="Binding\Validators\RequiredValidator.cs" />
-    <Compile Include="Binding\Validators\ValidationResult.cs" />
     <Compile Include="ConsoleApplication.cs" />
     <Compile Include="Controls\Button.cs" />
     <Compile Include="Controls\ButtonBase.cs" />
@@ -143,7 +130,6 @@
     <Compile Include="Controls\ScrollViewer.cs" />
     <Compile Include="Controls\TextBlock.cs" />
     <Compile Include="Controls\TextBox.cs" />
-    <Compile Include="Controls\TreeView.cs" />
     <Compile Include="Controls\UIElementCollection.cs" />
     <Compile Include="Controls\Window.cs" />
     <Compile Include="Controls\WindowsHost.cs" />
@@ -158,8 +144,6 @@
     <Compile Include="Core\VisualTreeHelper.cs" />
     <Compile Include="Events\EventManager.cs" />
     <Compile Include="Events\FocusManager.cs" />
-    <Compile Include="Events\ICommand.cs" />
-    <Compile Include="Events\ICommandSource.cs" />
     <Compile Include="Events\KeyboardFocusChangedEventArgs.cs" />
     <Compile Include="Events\KeyConverter.cs" />
     <Compile Include="Events\KeyEventArgs.cs" />
@@ -167,7 +151,6 @@
     <Compile Include="Events\KeyGestureConverter.cs" />
     <Compile Include="Events\ModifierKeysConverter.cs" />
     <Compile Include="Events\MouseEventArgs.cs" />
-    <Compile Include="Events\RelayCommand.cs" />
     <Compile Include="Events\RoutedEvent.cs" />
     <Compile Include="Events\RoutedEventArgs.cs" />
     <Compile Include="Native\Libc.cs" />
@@ -178,11 +161,10 @@
     <Compile Include="Rendering\PhysicalCanvas.cs" />
     <Compile Include="Rendering\Renderer.cs" />
     <Compile Include="Rendering\RenderingBuffer.cs" />
-    <Compile Include="Xaml\BindingMarkupExtension.cs" />
-    <Compile Include="Xaml\ConvertMarkupExtension.cs" />
-    <Compile Include="Xaml\NotBooleanConverter.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Xaml\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

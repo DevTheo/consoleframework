@@ -5,7 +5,7 @@ namespace ConsoleFramework.Core
     /// <summary>
     /// Set of predefined colors.
     /// </summary>
-    public enum Color : ushort
+    public enum Color : int
     {
         Black = 0x0000,
         DarkBlue = 0x0001,
@@ -28,7 +28,7 @@ namespace ConsoleFramework.Core
         White = Gray | Attr.FOREGROUND_INTENSITY
     }
 
-    public static class Colors
+    internal static class Colors
     {
         /// <summary>
         /// Blends foreground and background colors into one char attributes code.

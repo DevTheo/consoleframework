@@ -2,19 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Binding.Observables {
+namespace ConsoleFramework.Binding.Observables {
 
     /// <summary>
     /// Marks the IList or IList&lt;T&gt; with notifications support.
     /// It is not derived from IList and IList&lt;T&gt; to allow
     /// to create both generic and nongeneric implementations.
     /// </summary>
-    public interface IObservableList
+    internal interface IObservableList
     {
         event ListChangedHandler ListChanged;
     }
 
-    public delegate void ListChangedHandler(object sender, ListChangedEventArgs args);
+    internal delegate void ListChangedHandler(object sender, ListChangedEventArgs args);
 
     public enum ListChangedEventType
     {
@@ -23,7 +23,7 @@ namespace Binding.Observables {
         ItemReplaced
     }
 
-    public sealed class ListChangedEventArgs //: EventArgs
+    internal sealed class ListChangedEventArgs //: EventArgs
     {
         public ListChangedEventArgs(ListChangedEventType type, int index, int count, IList<object> removedItems) {
             this.type = type;

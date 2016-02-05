@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Binding.Observables;
+using ConsoleFramework.Binding.Observables;
 using ConsoleFramework.Core;
 using ConsoleFramework.Events;
 using ConsoleFramework.Native;
@@ -28,7 +28,7 @@ namespace ConsoleFramework.Controls
     /// Item of menu.
     /// </summary>
     [ContentProperty(Name = "Items")]
-    internal class MenuItem : MenuItemBase, ICommandSource
+    internal class MenuItem : MenuItemBase /*, ICommandSource*/
     {
         public static readonly RoutedEvent ClickEvent = EventManager.RegisterRoutedEvent("Click",
             RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(MenuItem));
@@ -471,47 +471,47 @@ namespace ConsoleFramework.Controls
             openMenu(  );
         }
 
-        private ICommand command;
-        public ICommand Command {
-            get {
-                return command;
-            }
-            set {
-                if (command != value) {
-                    if (command != null) {
-                        command.CanExecuteChanged -= onCommandCanExecuteChanged;
-                    }
-                    command = value;
-                    command.CanExecuteChanged += onCommandCanExecuteChanged;
+        //private ICommand command;
+        //public ICommand Command {
+        //    get {
+        //        return command;
+        //    }
+        //    set {
+        //        if (command != value) {
+        //            if (command != null) {
+        //                command.CanExecuteChanged -= onCommandCanExecuteChanged;
+        //            }
+        //            command = value;
+        //            command.CanExecuteChanged += onCommandCanExecuteChanged;
 
-                    refreshCanExecute();
-                }
-            }
-        }
+        //            refreshCanExecute();
+        //        }
+        //    }
+        //}
 
-        private void onCommandCanExecuteChanged(object sender, EventArgs args) {
-            refreshCanExecute();
-        }
+        //private void onCommandCanExecuteChanged(object sender, EventArgs args) {
+        //    refreshCanExecute();
+        //}
 
-        private void refreshCanExecute() {
-            if (command == null) {
-                this.Disabled = false;
-                return;
-            }
+        //private void refreshCanExecute() {
+        //    if (command == null) {
+        //        this.Disabled = false;
+        //        return;
+        //    }
 
-            this.Disabled = !command.CanExecute(CommandParameter);
-        }
+        //    this.Disabled = !command.CanExecute(CommandParameter);
+        //}
 
-        public object CommandParameter {
-            get;
-            set;
-        }
+        //public object CommandParameter {
+        //    get;
+        //    set;
+        //}
 
         internal void RaiseClick( ) {
             RaiseEvent( ClickEvent, new RoutedEventArgs( this, ClickEvent ) );
-            if (command != null && command.CanExecute(CommandParameter)) {
-                command.Execute(CommandParameter);
-            }
+            //if (command != null && command.CanExecute(CommandParameter)) {
+            //    command.Execute(CommandParameter);
+            //}
         }
     }
 

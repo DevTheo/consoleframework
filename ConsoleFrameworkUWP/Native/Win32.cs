@@ -9,60 +9,60 @@ namespace ConsoleFramework.Native
     /// </summary>
     public static class Win32
     {
-        public static uint INFINITE = 0xFFFFFFFF;
+        internal static readonly uint INFINITE = 0xFFFFFFFF;
 
         [DllImport("kernel32.dll", ExactSpelling = true, SetLastError = true)]
-        public static extern void AllocConsole();
+        internal static extern void AllocConsole();
 
         /// <summary>
         /// Returns current console mode. Program saves it before changing and
         /// restores before exit.
         /// </summary>
         [DllImport("kernel32.dll", ExactSpelling = true, SetLastError = true)]
-        public static extern bool GetConsoleMode(IntPtr hConsoleHandle, [Out] out uint mode);
+        internal static extern bool GetConsoleMode(IntPtr hConsoleHandle, [Out] out uint mode);
 
         /// <summary>
         /// It is used to set ENABLE_WINDOW_INPUT flag, which enables the events
         /// about console screen buffer resize.
         /// </summary>
         [DllImport("kernel32.dll", ExactSpelling = true, SetLastError = true)]
-        public static extern bool SetConsoleMode(IntPtr hConsoleHandle, uint mode);
+        internal static extern bool SetConsoleMode(IntPtr hConsoleHandle, uint mode);
 
         [DllImport("kernel32.dll")]
-        public static extern bool GetConsoleScreenBufferInfo(IntPtr hConsoleOutput,
+        internal static extern bool GetConsoleScreenBufferInfo(IntPtr hConsoleOutput,
             out CONSOLE_SCREEN_BUFFER_INFO lpConsoleScreenBufferInfo);
 
         [DllImport("kernel32.dll", ExactSpelling = true, SetLastError = true)]
-        public static extern IntPtr GetStdHandle([MarshalAs(UnmanagedType.I4)]StdHandleType nStdHandle);
+        internal static extern IntPtr GetStdHandle([MarshalAs(UnmanagedType.I4)]StdHandleType nStdHandle);
 
         [DllImport("kernel32.dll", ExactSpelling = true)]
-        public static extern uint WaitForMultipleObjects(uint nCount,
+        internal static extern uint WaitForMultipleObjects(uint nCount,
                                                          [MarshalAs(UnmanagedType.LPArray)] IntPtr[] lpHandles,
                                                          bool bWaitAll, uint dwMilliseconds);
 
         [DllImport("kernel32.dll", EntryPoint = "ReadConsoleInputW", CharSet = CharSet.Unicode, ExactSpelling = true)]
-        public static extern bool ReadConsoleInput(IntPtr hConsoleInput,
+        internal static extern bool ReadConsoleInput(IntPtr hConsoleInput,
                                                    [Out] INPUT_RECORD[] lpBuffer,
                                                    uint nLength, out uint lpNumberOfEventsRead);
 
         [DllImport("kernel32.dll", SetLastError = true, EntryPoint = "WriteConsoleOutputW")]
-        public static extern bool WriteConsoleOutputCore(IntPtr hConsoleOutput, CHAR_INFO[,] lpBuffer, COORD dwBufferSize,
+        internal static extern bool WriteConsoleOutputCore(IntPtr hConsoleOutput, CHAR_INFO[,] lpBuffer, COORD dwBufferSize,
                                                      COORD dwBufferCoord, ref SMALL_RECT lpWriteRegion);
 
         [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
-        private static extern int FormatMessage(int dwFlags, string lpSource, int dwMessageId, int dwLanguageId,
+        internal static extern int FormatMessage(int dwFlags, string lpSource, int dwMessageId, int dwLanguageId,
                                                StringBuilder lpBuffer, int nSize, string[] Arguments);
                 
         [DllImport("kernel32.dll", SetLastError = true)]
-        public static extern bool SetConsoleCursorPosition(IntPtr hConsoleOutput, COORD dwCursorPosition);
+        internal static extern bool SetConsoleCursorPosition(IntPtr hConsoleOutput, COORD dwCursorPosition);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        public static extern bool GetConsoleCursorInfo(IntPtr hConsoleOutput, out CONSOLE_CURSOR_INFO lpConsoleCursorInfo);
+        internal static extern bool GetConsoleCursorInfo(IntPtr hConsoleOutput, out CONSOLE_CURSOR_INFO lpConsoleCursorInfo);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        public static extern bool SetConsoleCursorInfo(IntPtr hConsoleOutput, [In] ref CONSOLE_CURSOR_INFO lpConsoleCursorInfo);
+        internal static extern bool SetConsoleCursorInfo(IntPtr hConsoleOutput, [In] ref CONSOLE_CURSOR_INFO lpConsoleCursorInfo);
 
-        public static string GetLastErrorMessage()
+        internal static string GetLastErrorMessage()
         {
             StringBuilder strLastErrorMessage = new StringBuilder(255);
             
@@ -73,22 +73,22 @@ namespace ConsoleFramework.Native
         }
 
         [DllImport("user32.dll")]
-        public static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
+        internal static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
 
         [DllImport("kernel32.dll")]
-        public static extern IntPtr GetConsoleWindow();
+        internal static extern IntPtr GetConsoleWindow();
 
         [DllImport("user32.dll")]
-        public static extern bool IsZoomed(IntPtr hwnd);
+        internal static extern bool IsZoomed(IntPtr hwnd);
 
         [DllImport("user32.dll")]
-        public static extern bool IsIconic(IntPtr hwnd);
+        internal static extern bool IsIconic(IntPtr hwnd);
 
-        public const UInt32 WM_SYSCOMMAND = 0x0112;
+        internal static readonly UInt32 WM_SYSCOMMAND = 0x0112;
 
-        public static readonly IntPtr SC_MAXIMIZE = new IntPtr(0xF030);
+        internal static readonly IntPtr SC_MAXIMIZE = new IntPtr(0xF030);
 
-        public static readonly IntPtr SC_RESTORE = new IntPtr(0xF120);
+        internal static readonly IntPtr SC_RESTORE = new IntPtr(0xF120);
     }
 
     public enum StdHandleType
@@ -98,7 +98,7 @@ namespace ConsoleFramework.Native
         STD_ERROR_HANDLE = -12
     }
 
-    public struct CONSOLE_SCREEN_BUFFER_INFO
+    internal struct CONSOLE_SCREEN_BUFFER_INFO
     {
         public COORD dwSize;
         public COORD dwCursorPosition;
@@ -111,7 +111,7 @@ namespace ConsoleFramework.Native
     /// CharSet.Unicode is required for proper marshaling.
     /// </summary>
     [StructLayout(LayoutKind.Explicit, CharSet = CharSet.Unicode)]
-    public struct CHAR_INFO
+    internal struct CHAR_INFO
     {
         [FieldOffset(0)]
         public char UnicodeChar;
@@ -130,7 +130,7 @@ namespace ConsoleFramework.Native
     /// CHAR_ATTRIBUTES native structure.
     /// </summary>
     [Flags]
-    public enum Attr : ushort
+    internal enum Attr : int
     {
         NO_ATTRIBUTES = 0x0000,
         /// <summary>
@@ -196,7 +196,7 @@ namespace ConsoleFramework.Native
     }
 
     [StructLayout(LayoutKind.Explicit)]
-    public struct INPUT_RECORD
+    internal struct INPUT_RECORD
     {
         [FieldOffset(0)]
         public EventType EventType;
@@ -212,7 +212,7 @@ namespace ConsoleFramework.Native
         public FOCUS_EVENT_RECORD FocusEvent;
     };
 
-    public enum EventType : ushort
+    public enum EventType : int
     {
         FOCUS_EVENT = 0x0010,
         KEY_EVENT = 0x0001,
@@ -222,7 +222,7 @@ namespace ConsoleFramework.Native
     }
 
     [StructLayout(LayoutKind.Explicit, CharSet = CharSet.Unicode)]
-    public struct KEY_EVENT_RECORD
+    internal struct KEY_EVENT_RECORD
     {
         [FieldOffset(0), MarshalAs(UnmanagedType.Bool)]
         public bool bKeyDown;
@@ -255,7 +255,7 @@ namespace ConsoleFramework.Native
     }
 
     [StructLayout(LayoutKind.Explicit)]
-    public struct MOUSE_EVENT_RECORD
+    internal struct MOUSE_EVENT_RECORD
     {
         [FieldOffset(0)]
         public COORD dwMousePosition;
@@ -268,7 +268,7 @@ namespace ConsoleFramework.Native
     }
 
     [Flags]
-    public enum MOUSE_BUTTON_STATE
+    internal enum MOUSE_BUTTON_STATE
     {
         FROM_LEFT_1ST_BUTTON_PRESSED = 0x0001,
         FROM_LEFT_2ND_BUTTON_PRESSED = 0x0004,
@@ -278,7 +278,7 @@ namespace ConsoleFramework.Native
     }
 
     [Flags]
-    public enum MouseEventFlags
+    internal enum MouseEventFlags
     {
         PRESSED_OR_RELEASED = 0x0000,
         DOUBLE_CLICK = 0x0002,
@@ -287,7 +287,7 @@ namespace ConsoleFramework.Native
         MOUSE_WHEELED = 0x0004
     }
 
-    public struct WINDOW_BUFFER_SIZE_RECORD
+    internal struct WINDOW_BUFFER_SIZE_RECORD
     {
         public COORD dwSize;
 
@@ -298,19 +298,19 @@ namespace ConsoleFramework.Native
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct MENU_EVENT_RECORD
+    internal struct MENU_EVENT_RECORD
     {
         public uint dwCommandId;
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct FOCUS_EVENT_RECORD
+    internal struct FOCUS_EVENT_RECORD
     {
         public uint bSetFocus;
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct COORD
+    internal struct COORD
     {
         public short X;
         public short Y;
@@ -323,7 +323,7 @@ namespace ConsoleFramework.Native
     };
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct SMALL_RECT
+    internal struct SMALL_RECT
     {
         public short Left;
         public short Top;
@@ -340,7 +340,7 @@ namespace ConsoleFramework.Native
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct CONSOLE_CURSOR_INFO
+    internal struct CONSOLE_CURSOR_INFO
     {
         /// <summary>
         /// The percentage of the character cell that is filled by the cursor.
@@ -354,8 +354,8 @@ namespace ConsoleFramework.Native
     /// <summary>
     /// Enumeration for virtual keys.
     /// </summary>
-    public enum VirtualKeys
-        : ushort
+    internal enum VirtualKeys
+        : int
     {
         LeftButton = 0x01,
         RightButton = 0x02,

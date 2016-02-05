@@ -9,7 +9,7 @@ namespace ConsoleFramework.Rendering
     /// <summary>
     /// Central point of the console framework layout system.
     /// </summary>
-    public sealed class Renderer
+    internal sealed class Renderer
     {
 
         private Rect rootElementRect;
